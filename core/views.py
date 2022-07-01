@@ -1,14 +1,11 @@
-from cgitb import reset
-from multiprocessing import context
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from core.models import *
 from django.shortcuts import redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
-import datetime 
-from django.urls import reverse
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.http import HttpResponse
+from core.forms import RegisterForms
 
 # Create your views here.
 
@@ -93,3 +90,27 @@ class SignUp(TemplateView):
         }
         return render(request, self.template_name, contexto)
 
+    def post(self, request):
+        form = RegisterForms(request.POST or None, request.FILES or None)
+
+        if form.is_valid():
+            print("############################# FORM " + str(form))
+
+            username = form.cleaned_data['username'] #request.POST['username']
+            email = form.cleaned_data['email']
+            pass1 = form.cleaned_data['password']            
+
+            myuser = User.objects.create_user(username, email, pass1)
+
+            myuser.save()
+
+            messages.success(request, "Sua conta foi cadastrada com sucesso.")
+
+            return redirect('login')
+        else:
+            contexto = {
+                "mensagemErro" : "Erro ao validar dados " + str(form.errors),
+            }
+            
+            return render(request, self.template_name, contexto)
+        

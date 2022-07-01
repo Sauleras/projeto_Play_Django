@@ -58,37 +58,37 @@
                     <a href="javascript:void(0)"> Pages </a>
                     <ul class="ud-submenu">
                       <li class="ud-submenu-item">
-                        <a href="about.html" class="ud-submenu-link">
+                        <a href="{% url 'about' %}" class="ud-submenu-link">
                           About Page
                         </a>
                       </li>
                       <li class="ud-submenu-item">
-                        <a href="pricing.html" class="ud-submenu-link">
+                        <a href="{% url 'pricing' %}" class="ud-submenu-link">
                           Pricing Page
                         </a>
                       </li>
                       <li class="ud-submenu-item">
-                        <a href="contact.html" class="ud-submenu-link">
+                        <a href="{% url 'contact' %}" class="ud-submenu-link">
                           Contact Page
                         </a>
                       </li>
                       <li class="ud-submenu-item">
-                        <a href="blog.html" class="ud-submenu-link">
+                        <a href="{% url 'blog' %}" class="ud-submenu-link">
                           Blog Grid Page
                         </a>
                       </li>
                       <li class="ud-submenu-item">
-                        <a href="blog-details.html" class="ud-submenu-link">
+                        <a href="{% url 'blog-details' %}" class="ud-submenu-link">
                           Blog Details Page
                         </a>
                       </li>
                       <li class="ud-submenu-item">
-                        <a href="login.html" class="ud-submenu-link">
+                        <a href="{% url 'login' %}" class="ud-submenu-link">
                           Sign In Page
                         </a>
                       </li>
                       <li class="ud-submenu-item">
-                        <a href="404.html" class="ud-submenu-link">404 Page</a>
+                        <a href="{% url '404' %}" class="ud-submenu-link">404 Page</a>
                       </li>
                     </ul>
                   </li>
@@ -133,8 +133,13 @@
               <div class="ud-login-logo">
                 <img src="{% static 'images/logo/logo-2.svg' %}" alt="logo" />
               </div>
-              <form class="ud-login-form" method="post">
+              <form class="ud-login-form" method="POST">
                 {% csrf_token %}
+
+                {% if mensagemErro %}
+                  <spam> Erro ao cadastrar {{mensagemErro}} </spam>
+                {% endif %}
+
                 <div class="ud-form-group">
                     <label for="username">Usuário</label>
                     <input
@@ -163,7 +168,7 @@
                     <label for="passwordConfirm">Confirmar Senha</label>
                     <input
                       type="password"
-                      name="passwordConfirm"
+                      name="pass2"
                       placeholder="Repetir Sua Senha"
                     />
                   </div>

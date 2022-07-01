@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import Index, Contact, About, Blog, Pricing, BlogDetails, Login, Error404, SignUp
 
 urlpatterns = [
