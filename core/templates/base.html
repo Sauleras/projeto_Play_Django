@@ -121,7 +121,22 @@
                   </li>
                 </ul>
               </div>
-
+              {% for message in messages %}
+              <div class="container-fluid p-0">
+                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" >
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  {{ message }}
+                </div>
+              </div>
+              {% endfor %}
+              {% if user.is_authenticated %}
+              <div class="navbar-btn d-none d-sm-inline-block">
+                <h4>Bem-Vindo, {{ user.first_name }}!</h4>
+                <a href="deslogar" style="color: #fff;">
+                  Deslogar
+                </a>
+              </div>
+              {% else %}
               <div class="navbar-btn d-none d-sm-inline-block">
                 <a href="{% url 'login' %}" class="ud-main-btn ud-login-btn">
                   Sign In
@@ -130,6 +145,7 @@
                   Sign Up
                 </a>
               </div>
+              {% endif %}
             </nav>
           </div>
         </div>

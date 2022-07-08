@@ -134,6 +134,14 @@
     <!-- ====== Banner End ====== -->
 
     <!-- ====== Login Start ====== -->
+    {% for message in messages %}
+    <div class="container-fluid p-0">
+      <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" >
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %}
     <section class="ud-login">
       <div class="container">
         <div class="row">
@@ -142,12 +150,13 @@
               <div class="ud-login-logo">
                 <img src="{% static 'images/logo/logo-2.svg' %}" alt="logo" />
               </div>
-              <form class="ud-login-form">
+              <form class="ud-login-form" method="POST">
+                {% csrf_token %}
                 <div class="ud-form-group">
                   <input
-                    type="email"
-                    name="email"
-                    placeholder="Email/username"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
                   />
                 </div>
                 <div class="ud-form-group">

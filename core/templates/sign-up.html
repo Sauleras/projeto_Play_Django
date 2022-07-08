@@ -99,7 +99,7 @@
                 <a href="{% url 'login' %}" class="ud-main-btn ud-login-btn">
                   Sign In
                 </a>
-                <a class="ud-main-btn ud-white-btn" href="javascript:void(0)">
+                <a class="ud-main-btn ud-white-btn" href="{% url 'sign-up' %}">
                   Sign Up
                 </a>
               </div>
@@ -124,7 +124,7 @@
     </section>
     <!-- ====== Banner End ====== -->
 
-    <!-- ====== Login Start ====== -->
+    <!-- ====== SignUp Start ====== -->
     <section class="ud-login">
       <div class="container">
         <div class="row">
@@ -135,7 +135,6 @@
               </div>
               <form class="ud-login-form" method="POST">
                 {% csrf_token %}
-
                 {% if mensagemErro %}
                   <spam> Erro ao cadastrar {{mensagemErro}} </spam>
                 {% endif %}
@@ -146,6 +145,22 @@
                       type="text"
                       name="username"
                       placeholder="Seu Usuário"
+                    />
+                  </div>
+                  <div class="ud-form-group">
+                    <label for="fname">Primeiro Nome</label>
+                    <input
+                      type="text"
+                      name="first_name"
+                      placeholder="Seu Primeiro Nome"
+                    />
+                  </div>
+                  <div class="ud-form-group">
+                    <label for="lname">Ultimo Nome</label>
+                    <input
+                      type="text"
+                      name="last_name"
+                      placeholder="Seu Ultimo Nome"
                     />
                   </div>
                 <div class="ud-form-group">
@@ -165,10 +180,10 @@
                   />
                 </div>
                 <div class="ud-form-group">
-                    <label for="passwordConfirm">Confirmar Senha</label>
+                    <label for="pass2">Confirmar Senha</label>
                     <input
                       type="password"
-                      name="pass2"
+                      name="password2"
                       placeholder="Repetir Sua Senha"
                     />
                   </div>

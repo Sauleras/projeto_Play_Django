@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import Index, Contact, About, Blog, Pricing, BlogDetails, Login, Error404, SignUp
+from .views import Index, Contact, About, Blog, Pricing, BlogDetails, Login, Error404, SignUp, sair
 
 urlpatterns = [
     path('', Index.as_view(), name='index'),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('login/', Login.as_view(), name='login'),
     path('404/', Error404.as_view(), name='404'),
     path('sign-up/', SignUp.as_view(), name='sign-up'),
+    path('deslogar', sair),
 ]
