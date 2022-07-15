@@ -125,6 +125,14 @@
     <!-- ====== Banner End ====== -->
 
     <!-- ====== SignUp Start ====== -->
+    {% for message in messages %}
+      <div class="container-fluid p-0">
+        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert" >
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <spam>{{ message }} </spam>
+        </div>
+      </div>
+    {% endfor %}
     <section class="ud-login">
       <div class="container">
         <div class="row">
@@ -135,10 +143,6 @@
               </div>
               <form class="ud-login-form" method="POST">
                 {% csrf_token %}
-                {% if mensagemErro %}
-                  <spam> Erro ao cadastrar {{mensagemErro}} </spam>
-                {% endif %}
-
                 <div class="ud-form-group">
                     <label for="username">Usuário</label>
                     <input

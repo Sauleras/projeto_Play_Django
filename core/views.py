@@ -133,11 +133,10 @@ class SignUp(TemplateView):
             return redirect('login')
 
         else:
-            contexto = {
-                "mensagemErro" : "Erro ao validar dados " + str(form.errors),
-            }
             
-        return render(request, self.template_name, contexto)
+            messages.error(request, "Erro ao validar dados") 
+            
+        return render(request, self.template_name)
         
 def sair(request):
     logout(request)
